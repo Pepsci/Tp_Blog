@@ -75,16 +75,17 @@ public class Blog_page extends JFrame {
 		panel.add(lblNewLabel);
 		
 		JPanel afficher_article = new JPanel();
-		afficher_article.setBounds(661, 150, 556, 552);
+		afficher_article.setBounds(636, 119, 684, 583);
 		contentPane.add(afficher_article);
 		afficher_article.setLayout(null);
 		
 		JLabel titrelbl = new JLabel("");
+		titrelbl.setHorizontalAlignment(SwingConstants.CENTER);
 		titrelbl.setBounds(74, 11, 472, 34);
 		afficher_article.add(titrelbl);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(10, 76, 546, 276);
+		scrollPane_2.setBounds(10, 76, 664, 276);
 		afficher_article.add(scrollPane_2);
 		
 
@@ -92,17 +93,6 @@ public class Blog_page extends JFrame {
 		JEditorPane articlelbl = new JEditorPane();
 		scrollPane_2.setViewportView(articlelbl);
 		articlelbl.setEditable(false);
-		//scrollPane_1.add(articlelbl);
-		
-		JEditorPane resumelbl = new JEditorPane();
-		resumelbl.setBounds(10, 391, 536, 150);
-		resumelbl.setEditable(false);
-		afficher_article.add(resumelbl);
-		
-		JLabel lblNewLabel_3 = new JLabel("R\u00E9sum\u00E9");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_3.setBounds(10, 363, 75, 17);
-		afficher_article.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Article");
 		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -114,24 +104,38 @@ public class Blog_page extends JFrame {
 		lblNewLabel_3_1_1.setBounds(10, 11, 75, 17);
 		afficher_article.add(lblNewLabel_3_1_1);
 		
-		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setBounds(37, 187, 556, 515);
-		contentPane.add(panel_1_1);
-		panel_1_1.setLayout(null);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(56, 450, 588, 122);
+		afficher_article.add(scrollPane);
+		//scrollPane_1.add(articlelbl);
+		
+		JEditorPane resumelbl = new JEditorPane();
+		scrollPane.setViewportView(resumelbl);
+		resumelbl.setEditable(false);
+		
+		JLabel lblNewLabel_3 = new JLabel("R\u00E9sum\u00E9");
+		lblNewLabel_3.setBounds(56, 422, 75, 17);
+		afficher_article.add(lblNewLabel_3);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		
+		JPanel panelListe = new JPanel();
+		panelListe.setBounds(37, 119, 556, 583);
+		contentPane.add(panelListe);
+		panelListe.setLayout(null);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(10, 11, 524, 54);
-		panel_1_1.add(panel_2);
+		panelListe.add(panel_2);
 		panel_2.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Liste des Articles");
 		lblNewLabel_1.setFont(new Font("Stencil", Font.ITALIC, 35));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(0, 0, 524, 54);
+		lblNewLabel_1.setBounds(0, 0, 524, 32);
 		panel_2.add(lblNewLabel_1);
 		
 		JButton btnCreerArticle = new JButton("R\u00E9diger un Article");
-		btnCreerArticle.setBounds(35, 427, 253, 46);
+		btnCreerArticle.setBounds(273, 399, 253, 46);
 		btnCreerArticle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -146,11 +150,11 @@ public class Blog_page extends JFrame {
 			}
 		});
 		btnCreerArticle.setFont(new Font("Stencil", Font.ITALIC, 20));
-		panel_1_1.add(btnCreerArticle);
+		panelListe.add(btnCreerArticle);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(35, 76, 467, 268);
-		panel_1_1.add(scrollPane_1);
+		scrollPane_1.setBounds(35, 76, 467, 130);
+		panelListe.add(scrollPane_1);
 		
 		table = new JTable();
 		scrollPane_1.setViewportView(table);
@@ -173,10 +177,20 @@ public class Blog_page extends JFrame {
 		table.setModel(liste());
 		
 		JLabel lblNewLabel_2 = new JLabel("Cliquer sur l'article à lire");
-		lblNewLabel_2.setBounds(35, 362, 467, 54);
+		lblNewLabel_2.setBounds(35, 206, 467, 54);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Stencil", Font.ITALIC, 20));
-		panel_1_1.add(lblNewLabel_2);
+		panelListe.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3_2 = new JLabel("Commantaires");
+		lblNewLabel_3_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_3_2.setBounds(35, 427, 135, 18);
+		panelListe.add(lblNewLabel_3_2);
+		
+		JEditorPane resumelbl_1 = new JEditorPane();
+		resumelbl_1.setEditable(false);
+		resumelbl_1.setBounds(10, 456, 534, 116);
+		panelListe.add(resumelbl_1);
 		
 	}
 	public DefaultTableModel liste(){
