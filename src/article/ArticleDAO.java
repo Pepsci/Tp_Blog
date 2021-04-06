@@ -1,7 +1,6 @@
 package article;
 
 import java.awt.Component;
-import swing_login.Login;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +12,7 @@ import javax.swing.JOptionPane;
 
 import dao.IDAO;
 import getConnect.GetConnect;
+import swing.Login;
 
 public class ArticleDAO implements IDAO<Article>{
 	

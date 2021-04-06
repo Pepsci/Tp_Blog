@@ -5,7 +5,11 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/pep_m/OneDrive/Bureau/Mes Cours/Java/mysql-connector-java-5.1.12-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pep_m/OneDrive/Bureau/Mes Cours/mysql jar/mysql-connector-java-5.1.12-bin.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

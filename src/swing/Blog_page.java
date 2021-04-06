@@ -1,4 +1,4 @@
-package swing_login;
+package swing;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -27,6 +27,9 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JScrollBar;
 
 public class Blog_page extends JFrame {
 
@@ -77,20 +80,39 @@ public class Blog_page extends JFrame {
 		afficher_article.setLayout(null);
 		
 		JLabel titrelbl = new JLabel("");
-		titrelbl.setBounds(10, 11, 536, 68);
+		titrelbl.setBounds(74, 11, 472, 34);
 		afficher_article.add(titrelbl);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(10, 76, 546, 276);
+		afficher_article.add(scrollPane_2);
 		
 
 		
 		JEditorPane articlelbl = new JEditorPane();
-		articlelbl.setBounds(10, 100, 546, 276);
+		scrollPane_2.setViewportView(articlelbl);
 		articlelbl.setEditable(false);
-		afficher_article.add(articlelbl);
+		//scrollPane_1.add(articlelbl);
 		
-		JLabel resumelbl = new JLabel("");
-		resumelbl.setEnabled(false);
+		JEditorPane resumelbl = new JEditorPane();
 		resumelbl.setBounds(10, 391, 536, 150);
+		resumelbl.setEditable(false);
 		afficher_article.add(resumelbl);
+		
+		JLabel lblNewLabel_3 = new JLabel("R\u00E9sum\u00E9");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_3.setBounds(10, 363, 75, 17);
+		afficher_article.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_3_1 = new JLabel("Article");
+		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_3_1.setBounds(10, 48, 75, 17);
+		afficher_article.add(lblNewLabel_3_1);
+		
+		JLabel lblNewLabel_3_1_1 = new JLabel("Titre");
+		lblNewLabel_3_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_3_1_1.setBounds(10, 11, 75, 17);
+		afficher_article.add(lblNewLabel_3_1_1);
 		
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setBounds(37, 187, 556, 515);
@@ -108,12 +130,30 @@ public class Blog_page extends JFrame {
 		lblNewLabel_1.setBounds(0, 0, 524, 54);
 		panel_2.add(lblNewLabel_1);
 		
-		JButton btnCreerArticle = new JButton("Ecrire un Article");
-		btnCreerArticle.setFont(new Font("Stencil", Font.ITALIC, 20));
+		JButton btnCreerArticle = new JButton("R\u00E9diger un Article");
 		btnCreerArticle.setBounds(35, 427, 253, 46);
+		btnCreerArticle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				CreationArticle home = new CreationArticle();
+				home.setVisible(true);
+				
+				JLabel user = new JLabel();
+				home.getContentPane().add(user);
+				
+				dispose();
+			}
+		});
+		btnCreerArticle.setFont(new Font("Stencil", Font.ITALIC, 20));
 		panel_1_1.add(btnCreerArticle);
 		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(35, 76, 467, 268);
+		panel_1_1.add(scrollPane_1);
+		
 		table = new JTable();
+		scrollPane_1.setViewportView(table);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -123,8 +163,6 @@ public class Blog_page extends JFrame {
 				String artTitre =  table.getModel().getValueAt(id, 1).toString();
 				String artArticle =  table.getModel().getValueAt(id, 2).toString();
 				String artResume =  table.getModel().getValueAt(id, 3).toString();
-			System.out.println(table.getSelectedRow());
-			
 				
 				titrelbl.setText(artTitre);
 				articlelbl.setText(artArticle);
@@ -132,18 +170,12 @@ public class Blog_page extends JFrame {
 				
 			}
 		});
-		table.setBounds(35, 76, 467, 268);
-		panel_1_1.add(table);
 		table.setModel(liste());
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(37, 76, 465, 268);
-		panel_1_1.add(scrollPane);
-		
 		JLabel lblNewLabel_2 = new JLabel("Cliquer sur l'article à lire");
+		lblNewLabel_2.setBounds(35, 362, 467, 54);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Stencil", Font.ITALIC, 20));
-		lblNewLabel_2.setBounds(35, 362, 467, 54);
 		panel_1_1.add(lblNewLabel_2);
 		
 	}

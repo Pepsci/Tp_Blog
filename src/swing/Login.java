@@ -1,4 +1,4 @@
-package swing_login;
+package swing;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -240,7 +240,7 @@ public class Login extends JFrame {
 						ResultSet rs = req.executeQuery();
 						
 						if(rs.next()) {
-							JOptionPane.showMessageDialog(btnCreate, "Cet Eamil existe déjà !");
+							JOptionPane.showMessageDialog(btnCreate, "Cet Email existe déjà !");
 							
 							
 						

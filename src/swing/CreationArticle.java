@@ -1,4 +1,4 @@
-package swing_login;
+package swing;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -6,12 +6,21 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import article.Article;
+import article.ArticleDAO;
+
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JFormattedTextField;
 
 public class CreationArticle extends JFrame {
 
@@ -50,15 +59,15 @@ public class CreationArticle extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JTextPane article = new JTextPane();
-		article.setBounds(10, 76, 599, 591);
-		panel.add(article);
-		
 		JLabel lblNewLabel_1 = new JLabel("Votre Article");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Stencil", Font.ITALIC, 30));
 		lblNewLabel_1.setBounds(10, 11, 599, 42);
 		panel.add(lblNewLabel_1);
+		
+		JTextPane article = new JTextPane();
+		article.setBounds(20, 64, 576, 603);
+		panel.add(article);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(10, 11, 619, 82);
@@ -91,14 +100,48 @@ public class CreationArticle extends JFrame {
 		panel_2.add(resumeArticle);
 		
 		JButton btnEnvoyerArticle = new JButton("Envoyer");
+		btnEnvoyerArticle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String saisie_titre = titreArticle.getText();
+				String saisie_article = article.getText();
+				String saisie_resume = resumeArticle.getText();
+				
+				Article art = new Article(saisie_titre,saisie_article,saisie_resume);
+				ArticleDAO artDAO = new ArticleDAO();
+				
+				if (saisie_titre.equals("") || saisie_article.equals("") || saisie_resume.equals("")) {
+					JOptionPane.showMessageDialog(btnEnvoyerArticle, "Veuillez remplir tous les champs");
+					
+				}else {
+					
+					artDAO.create(art);
+					JOptionPane.showMessageDialog(btnEnvoyerArticle, "Votre article a bien été envoyé !");
+				
+				}
+				
+			}
+		});
 		btnEnvoyerArticle.setFont(new Font("Stencil", Font.ITALIC, 30));
 		btnEnvoyerArticle.setBounds(639, 347, 314, 60);
 		contentPane.add(btnEnvoyerArticle);
 		
 		JButton btnRetourArticles = new JButton("Retour Articles");
+		btnRetourArticles.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				Blog_page home = new Blog_page(null);
+				home.setVisible(true);
+				
+				JLabel user = new JLabel();
+				home.getContentPane().add(user);
+				
+				dispose();
+			}
+		});
 		btnRetourArticles.setFont(new Font("Stencil", Font.ITALIC, 30));
 		btnRetourArticles.setBounds(639, 445, 314, 60);
 		contentPane.add(btnRetourArticles);
 	}
-
 }
