@@ -10,9 +10,13 @@ import javax.swing.table.DefaultTableModel;
 
 import article.Article;
 import article.ArticleDAO;
-
+import commentaire.Commentaire;
+import commentaire.CommentaireDAO;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.Panel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -187,26 +191,48 @@ public class Blog_page extends JFrame {
 		lblNewLabel_3_2.setBounds(10, 443, 135, 18);
 		panelListe.add(lblNewLabel_3_2);
 		
-		JEditorPane resumelbl_1 = new JEditorPane();
-		resumelbl_1.setEditable(false);
-		resumelbl_1.setBounds(10, 472, 534, 208);
-		panelListe.add(resumelbl_1);
-		
 		JPanel panelCommantaire = new JPanel();
 		panelCommantaire.setBounds(10, 250, 524, 172);
 		panelListe.add(panelCommantaire);
 		panelCommantaire.setLayout(null);
 		
-		JEditorPane editorPane = new JEditorPane();
-		editorPane.setBounds(10, 45, 504, 73);
-		panelCommantaire.add(editorPane);
+		JEditorPane commentaire = new JEditorPane();
+		commentaire.setBounds(10, 45, 504, 73);
+		panelCommantaire.add(commentaire);
 		
 		JButton btncommanter = new JButton("Ajouter un commantaire");
+		btncommanter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String comment_saisie = commentaire.getText();
+				
+				Commentaire comment = new Commentaire();
+				
+				comment.setCommentaire(comment_saisie);
+				comment.setAuteur("test");
+				comment.setArticle_id(3);
+				
+				CommentaireDAO commentDao = new CommentaireDAO();
+				
+				if (commentDao.ecrire(comment)) {
+					JOptionPane.showMessageDialog(null, "Merci pour votre commentaire");
+					commentaire.setText("");
+				}else {
+					
+					JOptionPane.showMessageDialog(null, "Oups, impossible de commenter");
+				}
+			}
+		});
 		btncommanter.setHorizontalAlignment(SwingConstants.LEADING);
 		btncommanter.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btncommanter.setBounds(10, 129, 167, 23);
 		panelCommantaire.add(btncommanter);
 		
+		JPanel panelAffichageCom = new JPanel();
+		panelAffichageCom.setBounds(10, 472, 524, 208);
+		panelListe.add(panelAffichageCom);
+		panelAffichageCom.setLayout(null);
+		panelListe.add(panelAffichageCom);
 	}
 	public DefaultTableModel liste(){
 		
@@ -231,12 +257,50 @@ public class Blog_page extends JFrame {
 			tab.addRow(vect);
 		}
 		return tab;
-	}
+
 	
+	CommentaireDAO comDao = new CommentaireDAO();
+	
+	List<Commentaire> listCom = new ArrayList<>();
+	listCom.addAll(comDao.findById());
+	
+	JLabel[] auteur_com = new JLabel[listCom.size()];
+	JLabel[] contenu_com = new JLabel[listCom.size()];
+	
+	JEditorPane[] content = new JEditorPane[listCom.size()];
+	
+	for (int i = 0; i < listCom.size(); i++) {
+		auteur_com[i] = new JLabel();
+		auteur_com[i].setBounds(10, 35+(i*20), 250, 14);
+		auteur_com[i].setText(listCom.get(i).getAuteur());
+		
+		
+		contenu_com[i] = new JLabel();
+		contenu_com[i].setBounds(10, 65+(i*20), 250, 14);
+		contenu_com[i].setText(listCom.get(i).getCommentaire());
+		
+		content[i] = new JEditorPane();
+		content[i].setContentType("text/html");
+		content[i].setText("<html> "
+				+ "<em> Posté par :"+ auteur_com[i].getText() +"</em>"+"<br>"
+						+ contenu_com[i].getText()+"<hr>"
+		+ "</html>");
+		content[i].setBounds(10, 30+(i*50), 350, 50);
+		content[i].setEditable(false);
+		
+		panelAffichageCom.add(content[i]);
+	}
+}else {
+	//JOptionPane.showMessageDialog(llisting, "Aucun commentaire disponible");
+	JLabel msg = new JLabel("Aucun commentaire disponible");
+	msg.setBounds(10, 30, 350, 50);
+	
+	panelAffichageCom.add(msg);
+}
 }
 
 
-
+}
 
 
 

@@ -19,7 +19,7 @@ public class CommentaireDAO implements IDAO<Commentaire>{
 		try {
 			
 			PreparedStatement req = connect.prepareStatement("INSERT INTO commentaire"
-					+ "(commentaire, auteur, article_id, created_at) VALUES (?,?,?,now()) ");
+					+ "(commentaire, auteur, article_id) VALUES (?,?,?) ");
 			
 			req.setString(1, object.getCommentaire());
 			req.setString(2, object.getAuteur());

@@ -12,7 +12,7 @@ public class Commentaire {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Commentaire(String commentaire, String auteur, int article_id, String created_at) {
+	public Commentaire(String commentaire, String auteur, int article_id) {
 		super();
 		this.commentaire = commentaire;
 		this.auteur = auteur;
