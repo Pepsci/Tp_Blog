@@ -211,8 +211,6 @@ public class Login extends JFrame {
 		nomCreate.setBounds(20, 92, 344, 57);
 		panel_1_1.add(nomCreate);
 		
-		
-		
 		JButton btnCreate = new JButton("Créer Votre Compte");
 		btnCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -229,41 +227,31 @@ public class Login extends JFrame {
 					JOptionPane.showMessageDialog(btnCreate, "Veuillez remplir tous les champs");
 					
 				}else {
-					
-
 					try {
 						
 						PreparedStatement req = connect.prepareStatement("SELECT * FROM user WHERE email=? ");
 						
 						req.setString(1, saisie_email);
-						
 						ResultSet rs = req.executeQuery();
 						
 						if(rs.next()) {
 							JOptionPane.showMessageDialog(btnCreate, "Cet Email existe déjà !");
 							
-							
-						
-							
 						}else {
 							userDao.create(us);
 							JOptionPane.showMessageDialog(btnCreate, "Votre Compte a bien été créer");
-
 						}
 						
 					}catch(Exception e1) {
 						e1.printStackTrace();
 						System.out.println("Erreur 123345 !!!!!!!!");
 					}
-					
 				}
-				
 					nomCreate.setText("");
 					prenomCreate.setText("");
 					emailCreate.setText("");
 					passwordCreate.setText("");
 				}
-			
 		});
 		
 		btnCreate.setFont(new Font("Stencil", Font.ITALIC, 20));

@@ -58,6 +58,18 @@ public class UserDao implements IDAO<User>{
 		
 	}
 
+	@Override
+	public boolean ecrire(User object) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<User> findById() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
 
 

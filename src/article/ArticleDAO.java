@@ -80,6 +80,18 @@ public class ArticleDAO implements IDAO<Article>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public boolean ecrire(Article object) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Article> findById() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

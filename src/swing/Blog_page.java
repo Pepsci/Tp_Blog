@@ -64,7 +64,7 @@ public class Blog_page extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(381, 11, 556, 97);
+		panel.setBounds(636, 11, 556, 97);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -105,7 +105,7 @@ public class Blog_page extends JFrame {
 		afficher_article.add(lblNewLabel_3_1_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(56, 450, 588, 122);
+		scrollPane.setBounds(50, 391, 588, 122);
 		afficher_article.add(scrollPane);
 		//scrollPane_1.add(articlelbl);
 		
@@ -114,28 +114,13 @@ public class Blog_page extends JFrame {
 		resumelbl.setEditable(false);
 		
 		JLabel lblNewLabel_3 = new JLabel("R\u00E9sum\u00E9");
-		lblNewLabel_3.setBounds(56, 422, 75, 17);
+		lblNewLabel_3.setBounds(20, 363, 75, 17);
 		afficher_article.add(lblNewLabel_3);
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		JPanel panelListe = new JPanel();
-		panelListe.setBounds(37, 119, 556, 583);
-		contentPane.add(panelListe);
-		panelListe.setLayout(null);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(10, 11, 524, 54);
-		panelListe.add(panel_2);
-		panel_2.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("Liste des Articles");
-		lblNewLabel_1.setFont(new Font("Stencil", Font.ITALIC, 35));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(0, 0, 524, 32);
-		panel_2.add(lblNewLabel_1);
-		
 		JButton btnCreerArticle = new JButton("R\u00E9diger un Article");
-		btnCreerArticle.setBounds(273, 399, 253, 46);
+		btnCreerArticle.setBounds(20, 524, 253, 46);
+		afficher_article.add(btnCreerArticle);
 		btnCreerArticle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -150,7 +135,22 @@ public class Blog_page extends JFrame {
 			}
 		});
 		btnCreerArticle.setFont(new Font("Stencil", Font.ITALIC, 20));
-		panelListe.add(btnCreerArticle);
+		
+		JPanel panelListe = new JPanel();
+		panelListe.setBounds(10, 11, 556, 691);
+		contentPane.add(panelListe);
+		panelListe.setLayout(null);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(10, 11, 524, 54);
+		panelListe.add(panel_2);
+		panel_2.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Liste des Articles");
+		lblNewLabel_1.setFont(new Font("Stencil", Font.ITALIC, 35));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(0, 0, 524, 32);
+		panel_2.add(lblNewLabel_1);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(35, 76, 467, 130);
@@ -184,13 +184,28 @@ public class Blog_page extends JFrame {
 		
 		JLabel lblNewLabel_3_2 = new JLabel("Commantaires");
 		lblNewLabel_3_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_3_2.setBounds(35, 427, 135, 18);
+		lblNewLabel_3_2.setBounds(10, 443, 135, 18);
 		panelListe.add(lblNewLabel_3_2);
 		
 		JEditorPane resumelbl_1 = new JEditorPane();
 		resumelbl_1.setEditable(false);
-		resumelbl_1.setBounds(10, 456, 534, 116);
+		resumelbl_1.setBounds(10, 472, 534, 208);
 		panelListe.add(resumelbl_1);
+		
+		JPanel panelCommantaire = new JPanel();
+		panelCommantaire.setBounds(10, 250, 524, 172);
+		panelListe.add(panelCommantaire);
+		panelCommantaire.setLayout(null);
+		
+		JEditorPane editorPane = new JEditorPane();
+		editorPane.setBounds(10, 45, 504, 73);
+		panelCommantaire.add(editorPane);
+		
+		JButton btncommanter = new JButton("Ajouter un commantaire");
+		btncommanter.setHorizontalAlignment(SwingConstants.LEADING);
+		btncommanter.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btncommanter.setBounds(10, 129, 167, 23);
+		panelCommantaire.add(btncommanter);
 		
 	}
 	public DefaultTableModel liste(){
@@ -201,11 +216,11 @@ public class Blog_page extends JFrame {
 		
 		DefaultTableModel tab = new DefaultTableModel(null, col);
 		
-		List<Article> listArticles = new ArrayList<>();
-		listArticles.addAll(artDAO.read());
+		List<Article> listarticle = new ArrayList<>();
+		listarticle.addAll(artDAO.read());
 		
-		for (int i = 0; i < listArticles.size(); i++) {
-			Article art = listArticles.get(i);
+		for (int i = 0; i < listarticle.size(); i++) {
+			Article art = listarticle.get(i);
 			
 			Vector vect = new Vector();
 			vect.add(art.getId());
@@ -216,8 +231,8 @@ public class Blog_page extends JFrame {
 			tab.addRow(vect);
 		}
 		return tab;
-
 	}
+	
 }
 
 

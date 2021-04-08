@@ -22,9 +22,7 @@ public class GetConnect {
 		System.out.println("erreur connection !!");
 		e.printStackTrace();
 		}
-		
 		return connect;
-		
 	}
 
 }
